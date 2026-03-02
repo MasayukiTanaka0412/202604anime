@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2026年春アニメおすすめ診断｜Yes/No 10問</title>
+  <meta name="description" content="2026年春アニメの全タイトル一覧と、Yes/No 10問でおすすめが出る1ページ静的サイト。恋愛・ファンタジー・アクション・ダーク・SFまで対応。" />
+  <style>
+    :root{
+      --bg:#f8fbff;
+      --card:#ffffff;
+      --ink:#1f2430;
+      --muted:#5c6475;
+      --line:#dce8f5;
+      --accent:#4f8cff;
+      --accent2:#ff74a9;
+      --accent3:#7b5cff;
+      --shadow:0 12px 28px rgba(15,23,42,.08);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Segoe UI",Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(79,140,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 8%, rgba(255,116,169,.14), transparent 55%),
+        linear-gradient(180deg,#f5fbff,#ffffff);
+      min-height:100vh;
+    }
+    header{
+      max-width:1140px;
+      margin:0 auto;
+      padding:42px 18px 18px;
+    }
+    .titleBadges{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.02em;
+      border:1px solid rgba(79,140,255,.25);
+      color:#1852af;
+      background:rgba(79,140,255,.10);
+      box-shadow:0 10px 22px rgba(79,140,255,.10);
+    }
+    .badge.alt{
+      color:#9b144d;
+      background:rgba(255,116,169,.10);
+      border-color:rgba(255,116,169,.22);
+      box-shadow:0 10px 22px rgba(255,116,169,.10);
+    }
+    .badge.alt2{
+      color:#4e34c7;
+      background:rgba(123,92,255,.10);
+      border-color:rgba(123,92,255,.22);
+      box-shadow:0 10px 22px rgba(123,92,255,.10);
+    }
+    h1{
+      margin:12px 0 8px;
+      font-size:clamp(28px,3.1vw,42px);
+      line-height:1.12;
+      letter-spacing:.01em;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      max-width:78ch;
+      font-size:15px;
+    }
+    main{
+      max-width:1140px;
+      margin:0 auto;
+      padding:16px 18px 56px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .hd{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:12px;
+      padding:16px 16px 10px;
+      border-bottom:1px solid var(--line);
+    }
+    .hd h2{margin:0;font-size:18px;letter-spacing:.02em}
+    .hint{color:var(--muted);font-size:12px}
+    .bd{padding:14px 16px 16px}
+    .qa{display:flex;flex-direction:column;gap:12px}
+    .q{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+    }
+    .qt{font-weight:800;line-height:1.4;margin-bottom:10px}
+    .opts{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 10px;
+      background:#fff;
+      cursor:pointer;
+      font-size:13px;
+      user-select:none;
+    }
+    .pill input{margin:0}
+    button{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(79,140,255,.34);
+      background:rgba(79,140,255,.10);
+      color:#1852af;
+      font-weight:800;
+      cursor:pointer;
+    }
+    button:hover{filter:brightness(.98)}
+    button.secondary{
+      border-color:rgba(255,116,169,.28);
+      background:rgba(255,116,169,.10);
+      color:#9b144d;
+    }
+    .result{padding:14px 16px 16px}
+    .big{margin:0 0 6px;font-size:20px;font-weight:900}
+    .why{margin:0 0 12px;color:var(--muted);line-height:1.7;font-size:13px}
+    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:700px){ .twoCol{grid-template-columns:1fr} }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px;
+      background:#fff;
+    }
+    .mini b{display:block;margin-bottom:4px}
+    .toolbar{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;
+    }
+    input[type="search"], select{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      outline:none;
+      min-width:220px;
+    }
+    input[type="search"]{flex:1 1 320px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    @media (max-width:760px){ .grid{grid-template-columns:1fr} }
+    .anime{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,255,255,1));
+    }
+    .t{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+    .anime h3{margin:0;font-size:15px;line-height:1.3}
+    .meta{font-size:12px;color:var(--muted);white-space:nowrap}
+    .desc{margin:8px 0 0;font-size:13px;line-height:1.65;color:#293244}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .tag{
+      font-size:11px;
+      padding:5px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(79,140,255,.07);
+      color:#32445f;
+    }
+    .tag.romance,.tag.comfy{background:rgba(255,116,169,.08)}
+    .tag.dark,.tag.strategy{background:rgba(123,92,255,.09)}
+    .tag.sequel{background:rgba(0,0,0,.05)}
+    .allList{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:8px;
+    }
+    @media (max-width:900px){ .allList{grid-template-columns:repeat(2,minmax(0,1fr));} }
+    @media (max-width:560px){ .allList{grid-template-columns:1fr;} }
+    .chip{
+      display:flex;justify-content:space-between;gap:8px;align-items:flex-start;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:9px 10px;
+      background:#fff;
+      font-size:13px;
+      line-height:1.4;
+    }
+    .chip small{color:var(--muted);white-space:nowrap}
+    .summary{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+      margin-bottom:12px;
+    }
+    @media (max-width:900px){ .summary{grid-template-columns:repeat(2,minmax(0,1fr));} }
+    @media (max-width:560px){ .summary{grid-template-columns:1fr;} }
+    .stat{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+    }
+    .stat .num{font-size:24px;font-weight:900;margin-bottom:4px}
+    .stat .lab{font-size:12px;color:var(--muted)}
+    .tinyNote{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(0,0,0,.035);
+      border:1px dashed rgba(0,0,0,.12);
+      color:#4d5563;
+      font-size:12px;
+      line-height:1.7;
+    }
+    footer{
+      max-width:1140px;margin:0 auto;padding:0 18px 36px;
+      color:var(--muted);font-size:12px;line-height:1.7;
+    }
+    .hidden{display:none !important}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="titleBadges">
+      <span class="badge">🌸 2026年春アニメ</span>
+      <span class="badge alt">✅ Yes / No 10問でおすすめ</span>
+      <span class="badge alt2">📚 全83タイトル収録</span>
+    </div>
+    <h1>2026年春アニメおすすめ診断</h1>
+    <p class="sub">
+      2026年春アニメの一覧をもとに、まずは全体像を見渡して、最後に「今の気分」に合う作品を10問で提案する1ページサイトだよ。<br>
+      上で診断 → 中段で注目作を確認 → 下で全タイトル一覧を探す、の順で使うと見やすいです。
+    </p>
+  </header>
+
+  <main>
+    <section class="card" aria-label="おすすめ診断">
+      <div class="hd">
+        <h2>おすすめ診断（Yes / No 10問）</h2>
+        <div class="hint">続編OKかどうかもちゃんと聞く版</div>
+      </div>
+      <div class="bd">
+        <div id="qa" class="qa"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+          <button id="calc">おすすめを出す</button>
+          <button id="reset" class="secondary">リセット</button>
+        </div>
+
+        <div id="result" class="result hidden">
+          <p id="pickTitle" class="big"></p>
+          <p id="pickWhy" class="why"></p>
+
+          <div class="twoCol">
+            <div class="mini">
+              <b>ひとこと紹介</b>
+              <div id="pickDesc" style="font-size:13px;line-height:1.7;"></div>
+            </div>
+            <div class="mini">
+              <b>こんな日に刺さりやすい</b>
+              <ul id="pickFor" style="margin:6px 0 0 18px;padding:0;font-size:13px;line-height:1.7;"></ul>
+            </div>
+          </div>
+
+          <div class="mini" style="margin-top:10px;">
+            <b>注意ポイント</b>
+            <div id="pickCaution" style="font-size:13px;line-height:1.7;"></div>
+          </div>
+
+          <div class="mini" style="margin-top:10px;">
+            <b>次点のおすすめ（2本）</b>
+            <ol id="runnerUps" style="margin:6px 0 0 18px;padding:0;font-size:13px;line-height:1.7;"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="注目作一覧">
+      <div class="hd">
+        <h2>注目作一覧（おすすめ候補）</h2>
+        <div class="hint">診断の対象になる作品たち</div>
+      </div>
+      <div class="bd">
+        <div class="summary">
+          <div class="stat"><div class="num" id="featuredCount"></div><div class="lab">おすすめ候補数</div></div>
+          <div class="stat"><div class="num">83</div><div class="lab">収録タイトル数</div></div>
+          <div class="stat"><div class="num">10</div><div class="lab">診断質問数</div></div>
+          <div class="stat"><div class="num">2026</div><div class="lab">春シーズン基準</div></div>
+        </div>
+
+        <div class="toolbar">
+          <input id="featuredSearch" type="search" placeholder="例：恋愛 / ファンタジー / ダーク / Netflix / 青春 ..." />
+          <select id="featuredFilter">
+            <option value="all">全部</option>
+            <option value="romance">恋愛</option>
+            <option value="drama">青春・ドラマ</option>
+            <option value="fantasy">ファンタジー</option>
+            <option value="action">アクション</option>
+            <option value="dark">ダーク</option>
+            <option value="scifi">SF / 科学</option>
+            <option value="strategy">頭脳戦</option>
+            <option value="comedy">コメディ / 見やすい</option>
+            <option value="growth">成長もの</option>
+            <option value="sequel">続編</option>
+            <option value="newbie">初見向け</option>
+          </select>
+          <button id="shuffle" class="secondary">気分でランダム3本</button>
+        </div>
+
+        <div id="featuredList" class="grid"></div>
+
+        <div class="tinyNote">
+          ※ 注目作カードは、春シーズン一覧の中から「診断に向く作品」を中心に選んだものです。<br>
+          続編が多いシーズンなので、<span class="mono">Q10</span> の「続編でもOK」を <b>No</b> にすると初見向け寄りの候補が上がりやすくなります。
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="全タイトル一覧">
+      <div class="hd">
+        <h2>2026年春アニメ 全タイトル一覧</h2>
+        <div class="hint">リスト検索できます</div>
+      </div>
+      <div class="bd">
+        <div class="toolbar">
+          <input id="allSearch" type="search" placeholder="タイトル名で検索（例：Re:ゼロ / MAO / ジョジョ / よう実）" />
+          <select id="allFilter">
+            <option value="all">全部</option>
+            <option value="new">新作 / 単独作中心</option>
+            <option value="sequel">続編・シリーズ</option>
+            <option value="rerun">再放送</option>
+          </select>
+        </div>
+
+        <div id="allCount" class="hint" style="margin-bottom:10px;"></div>
+        <div id="allList" class="allList"></div>
+
+        <div class="tinyNote">
+          一覧は検索しやすさ優先でタイトルのみ表示。再放送はタイトル表記に「再放送」が入っているものを、続編はタイトル中の「第◯期 / season / シーズン / Part」などからざっくり判定しています。
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      ちいさな使い方メモ：<br>
+      ・「今夜1本選びたい」なら、診断 → 次点2本まで見るのが最短。<br>
+      ・「春シーズン全体を把握したい」なら、下の全タイトル一覧で検索するのが早いです。<br>
+      ・続編が多いので、初見で探すときは <b>初見向け</b> フィルタがかなり便利です。
+    </div>
+  </footer>
+
+  <script>
+    const FEATURED = [{"title": "愛してるゲームを終わらせたい", "when": "2026年4月〜", "format": "TV", "tags": ["romance", "comedy", "comfy", "newbie"], "desc": "幼なじみの両片想いが「愛してるゲーム」で意地を張り合う、近すぎて遠いラブコメ。", "for": ["甘酸っぱい両片想いが好き", "重すぎない恋愛で見たい", "かわいくニヤニヤしたい"], "caution": "大きな事件より“距離感”を味わうタイプ。派手な展開を求める日は物足りないかも。"}, {"title": "あかね噺", "when": "2026年4月4日〜", "format": "TV", "tags": ["growth", "drama", "newbie"], "desc": "父の無念を胸に、真打を目指して落語界を駆け上がる少女の本格成長譚。", "for": ["努力と才能がぶつかる話が好き", "何かを極める作品に弱い", "王道の成長ものを浴びたい"], "caution": "派手なバトルはなし。技芸の勝負に乗れないと熱さが届きにくい。"}, {"title": "お隣の天使様にいつの間にか駄目人間にされていた件 第2期", "when": "2026年4月3日〜", "format": "TV", "tags": ["romance", "comfy", "sequel"], "desc": "付き合い始めた周と真昼が、甘く焦れったい距離感のまま少しずつ過去も乗り越えていく。", "for": ["甘めの恋愛を浴びたい", "しっとり優しい空気が好き", "前作からのご褒美が欲しい"], "caution": "第1期前提がかなり強め。初見なら先に前作がおすすめ。"}, {"title": "彼女、お借りします 第5期", "when": "2026年4月〜", "format": "TV", "tags": ["romance", "drama", "comedy", "sequel"], "desc": "和也と千鶴の関係がさらに揺れる、嘘から始まった恋の大型ラブコメ続編。", "for": ["拗れた恋愛劇が好き", "修羅場込みのラブコメを見たい", "長く追ってきた関係の続きが気になる"], "caution": "主人公の言動で好みがかなり分かれるタイプ。テンポよく進んでほしい人は相性注意。"}, {"title": "霧尾ファンクラブ", "when": "2026年4月2日〜", "format": "TV", "tags": ["romance", "comedy", "drama", "newbie"], "desc": "“霧尾くんが好き”を語り合う二人の日常が、片想いの連鎖で少しずつ変わっていく青春劇。", "for": ["少し変わった青春群像が好き", "片想いの温度感を味わいたい", "会話のクセがある作品に惹かれる"], "caution": "王道ラブコメより、ちょっとねじれた感情の面白さ寄り。"}, {"title": "クラスで2番目に可愛い女の子と友だちになった", "when": "2026年4月7日〜", "format": "TV", "tags": ["romance", "comedy", "comfy", "newbie"], "desc": "ぼっちな男子と“2番目ヒロイン”の距離が縮む、等身大の友だちラブコメ。", "for": ["肩の力を抜いて見たい", "友達から始まる関係性が好き", "青春ラブコメの入り口が欲しい"], "caution": "刺激の強い展開は少なめ。じわっと距離が変わるタイプ。"}, {"title": "氷の城壁", "when": "2026年4月2日〜", "format": "TV", "tags": ["romance", "drama", "growth", "newbie"], "desc": "人付き合いが苦手な小雪たち4人のすれ違いを描く、じれったくて愛おしい群像青春劇。", "for": ["感情のすれ違いに弱い", "高校生の空気感を味わいたい", "会話と心情で刺さりたい"], "caution": "派手な事件より心の動きが中心。刺さる日は深く刺さるけど、気分を選ぶ。"}, {"title": "ゴーストコンサート : missing Songs", "when": "2026年4月5日〜", "format": "TV", "tags": ["scifi", "dark", "drama", "newbie"], "desc": "歌が禁じられた未来で、ゴーストと音楽が世界を揺らすSF×音楽×霊異譚。", "for": ["設定が立っている作品が好き", "音楽と超常の混ざり方に惹かれる", "新作オリジナルを試したい"], "caution": "世界観の説明を楽しめる人向け。まずキャラ萌えしたい日は少し硬めかも。"}, {"title": "春夏秋冬代行者 春の舞", "when": "2026年3月28日〜", "format": "TV", "tags": ["fantasy", "drama", "action", "newbie"], "desc": "春を失った国で、現人神と護衛官が季節を取り戻す旅に出る祈りのファンタジー。", "for": ["壮麗な世界観が好き", "喪失と再起の物語に弱い", "和の幻想譚を見たい"], "caution": "設定語りと感情劇が濃いめ。軽く流し見するにはもったいないタイプ。"}, {"title": "スティール・ボール・ラン ジョジョの奇妙な冒険", "when": "2026年3月19日〜", "format": "配信 / Netflix", "tags": ["action", "drama", "growth", "newbie"], "desc": "北米大陸横断レースに挑むジョニィとジャイロの運命が交錯する、超高密度ロードレース活劇。", "for": ["冒険とレースの熱量が欲しい", "濃いキャラ同士の相棒ものが好き", "大作感のある作品で上がりたい"], "caution": "癖の強さも含めてジョジョ。合うと最高だけど、合わないと一気に濃い。"}, {"title": "スノウボールアース", "when": "2026年4月3日〜", "format": "TV", "tags": ["scifi", "action", "drama", "newbie"], "desc": "怪獣との最終決戦から10年後、凍てついた地球を少年と巨大ロボが歩き出すSF冒険。", "for": ["ロボと終末世界が好き", "ビジュアルの強いSFが見たい", "世界の謎が気になる作品に惹かれる"], "caution": "熱血だけで押すタイプではなく、静かな孤独感もかなりある。"}, {"title": "転生したらスライムだった件 第4期", "when": "2026年4月3日〜", "format": "TV", "tags": ["fantasy", "action", "strategy", "sequel"], "desc": "人魔共栄圏を目指すテンペストが、各国の思惑と勇者・魔王の策謀に巻き込まれていく。", "for": ["異世界の国造りが好き", "戦略や政治パートも楽しめる", "安定して面白い続編が欲しい"], "caution": "シリーズ知識があるほど面白い。初見で飛び込むと勢力関係がやや多い。"}, {"title": "Dr.STONE SCIENCE FUTURE 第3クール", "when": "2026年4月2日〜", "format": "TV", "tags": ["scifi", "action", "growth", "sequel"], "desc": "月面着陸計画へ向けて、科学王国が南米でメデューサの核心に迫るクラフト冒険の続き。", "for": ["科学で無茶を突破する感じが好き", "旅と発明の連続を見たい", "王道少年漫画の発明版が好き"], "caution": "過去クールの積み上げが前提。途中参加だと人間関係と目的地の文脈が多い。"}, {"title": "とんがり帽子のアトリエ", "when": "2026年4月6日〜", "format": "TV", "tags": ["fantasy", "growth", "drama", "comfy", "newbie"], "desc": "魔法の秘密に触れた少女ココが、アトリエの仲間と学びながら世界の深部へ踏み込む。", "for": ["絵本みたいな幻想に浸りたい", "魔法学校ものが好き", "優しさと不穏が両方ある物語が好き"], "caution": "ゆったり見えて芯は重め。世界観に浸るモードのときがいちばん合う。"}, {"title": "NEEDY GIRL OVERDOSE", "when": "2026年4月〜", "format": "TV", "tags": ["dark", "drama", "comedy", "scifi", "newbie"], "desc": "最強の配信者を目指す“超てんちゃん”を中心に、令和のネット文化をアニメ独自に描く。", "for": ["ネット文化ネタに反応する", "かわいさと危うさの混ざり方が好き", "普通じゃない作品を試したい"], "caution": "精神的にしんどい要素や毒気は強め。癒やし目的の日にはあまり向かない。"}, {"title": "BEASTARS FINAL SEASON Part2", "when": "2026年3月7日〜", "format": "配信 / Netflix", "tags": ["dark", "drama", "romance", "sequel"], "desc": "レゴシとメロン、そして家族の秘密が交錯する、獣たちの社会劇の最終盤。", "for": ["社会性のあるドラマが好き", "ロマンスも陰影も欲しい", "シリーズの結末を見届けたい"], "caution": "FINALの後半なので前作履修はほぼ必須。重いテーマもがっつり入る。"}, {"title": "MAO", "when": "2026年春〜", "format": "TV", "tags": ["fantasy", "dark", "drama", "newbie"], "desc": "令和の少女が大正時代へ迷い込み、900年を生きる陰陽師と呪いの謎に挑むダークファンタジー。", "for": ["和風の怪異譚が好き", "タイムスリップものに惹かれる", "高橋留美子作品の新しい顔を見たい"], "caution": "明るいコメディ一辺倒ではない。呪いと怪異の空気を楽しめるかが鍵。"}, {"title": "魔入りました！入間くん 第4シリーズ", "when": "2026年4月〜", "format": "TV", "tags": ["fantasy", "comedy", "growth", "sequel"], "desc": "問題児クラス13人でランク4を目指す、魔界学園コメディの次なる試練。", "for": ["みんなでわちゃわちゃ成長する話が好き", "笑えて前向きになれる作品が見たい", "安心して見られる続編が欲しい"], "caution": "これも前作の積み上げが効く。1話だけで大きな変化を求めると肩透かしかも。"}, {"title": "ようこそ実力至上主義の教室へ 4th Season", "when": "2026年4月1日〜", "format": "TV", "tags": ["strategy", "dark", "drama", "sequel"], "desc": "2年生編が開幕し、新入生とホワイトルームの刺客を巡る駆け引きが加速。", "for": ["頭脳戦や心理戦が好き", "学校ものでもピリついていてほしい", "綾小路の無双が見たい"], "caution": "前提知識なしだとかなり入りにくい。人間関係もルールも多い。"}, {"title": "夜桜さんちの大作戦 第2期", "when": "2026年4月〜", "format": "TV", "tags": ["action", "comedy", "drama", "sequel"], "desc": "銀級スパイ試験や家族の秘密を巡り、夜桜家の新章が動き出す家族スパイアクション。", "for": ["アクションもギャグも欲しい", "家族ものが好き", "テンポよく進む少年漫画が見たい"], "caution": "基本は続き物。ノリは軽快だけど、途中から入ると関係性が見えづらい。"}, {"title": "黄泉のツガイ", "when": "2026年4月4日〜", "format": "TV", "tags": ["fantasy", "action", "dark", "newbie"], "desc": "山奥の双子と“ツガイ”を巡る謎が広がる、荒川弘原作の幻怪バトルファンタジー。", "for": ["謎のあるバトルものが好き", "民俗っぽい怪しさに惹かれる", "新作で勢いに乗りたい"], "caution": "世界観の用語や謎を追うタイプ。軽い気分で見始めると少し情報量がある。"}, {"title": "よわよわ先生", "when": "2026年4月〜", "format": "TV", "tags": ["romance", "comedy", "comfy", "newbie"], "desc": "本当は最弱なのに“こわこわ先生”と誤解される新米教師との、ちょっぴり刺激的なラブコメ。", "for": ["やわらかいコメディが見たい", "守ってあげたい系ヒロインが好き", "軽めのラブコメが欲しい"], "caution": "甘さとコメディの比率が高め。シリアスなドラマを期待すると違うかも。"}, {"title": "Re:ゼロから始める異世界生活 4th season", "when": "2026年4月〜", "format": "TV", "tags": ["fantasy", "dark", "drama", "sequel"], "desc": "賢者シャウラを求めて大砂漠の監視塔へ向かう、喪失を抱えた再起の旅。", "for": ["重厚な異世界劇が好き", "絶望からの再起に弱い", "感情を大きく揺さぶられたい"], "caution": "シリーズ履修前提で重さも強い。気軽に流すタイプでは全然ない。"}];
+    const QUESTIONS = [{"id": "q1", "text": "甘めの恋愛や関係の変化が見たい", "yes": {"romance": 3}, "no": {}}, {"id": "q2", "text": "青春のすれ違いや心情描写が刺さる", "yes": {"drama": 3, "growth": 1}, "no": {}}, {"id": "q3", "text": "剣と魔法・異世界・伝奇ファンタジーが好き", "yes": {"fantasy": 3}, "no": {}}, {"id": "q4", "text": "アクションやバトルでテンションを上げたい", "yes": {"action": 3}, "no": {}}, {"id": "q5", "text": "ダークさ・重さ・危うい雰囲気も歓迎", "yes": {"dark": 3}, "no": {"comfy": 1, "comedy": 1}}, {"id": "q6", "text": "科学/SF/メカ/世界設定に惹かれる", "yes": {"scifi": 3}, "no": {}}, {"id": "q7", "text": "頭脳戦・駆け引き・作戦ものが好き", "yes": {"strategy": 3}, "no": {}}, {"id": "q8", "text": "努力・修行・成長で熱くなりたい", "yes": {"growth": 3}, "no": {}}, {"id": "q9", "text": "今日は笑える/見やすい作品を優先したい", "yes": {"comedy": 2, "comfy": 2}, "no": {}}, {"id": "q10", "text": "前作の履修がある、または続編でもOK", "yes": {"sequel": 3}, "no": {"newbie": 3}}];
+    const ALL_TITLES = ["愛してるゲームを終わらせたい", "アオアシ（再放送）", "あかね噺", "淡島百景", "TVSP 異世界でチート能力を手にした俺は、現実世界をも無双する ～レベルアップは人生を変えた～", "異世界のんびり農家２", "一畳間まんきつ暮らし！", "嫌な顔されながらおパンツ見せてもらいたいＲ", "インゴクダンチ", "大きい女の子は好きですか？", "オタクに優しいギャルはいない!?", "おでかけ子ザメ シーズン2", "お隣の天使様にいつの間にか駄目人間にされていた件 第2期", "おねがいアイプリ", "カナン様はあくまでチョロい", "彼女、お借りします 第5期", "上伊那ぼたん、酔へる姿は百合の花", "神の雫", "神の庭付き楠木邸", "ガンバレ！中村くん！！", "「鬼滅の刃」シリーズ全編再放送", "キャンディーカリエス", "霧尾ファンクラブ", "キルアオ", "クジマ歌えば家ほろろ", "クラスで2番目に可愛い女の子と友だちになった", "黒猫と魔女の教室", "ゴーストコンサート : missing Songs", "氷の城壁", "ここは俺に任せて先に行けと言ってから10年がたったら伝説になっていた。", "最強の王様、二度目の人生は何をする？ Season2", "最強の職業は勇者でも賢者でもなく鑑定士(仮)らしいですよ？", "自称悪役令嬢な婚約者の観察記録。", "自動販売機に生まれ変わった俺は迷宮を彷徨う 3rd season", "終末のワルキューレⅢ", "春夏秋冬代行者 春の舞", "小３アシベ QQゴマちゃん", "新幹線変形ロボ シンカリオン 特別ダイヤ版", "スター・ウォーズ：モール／シャドウ・ロード", "スティール・ボール・ラン ジョジョの奇妙な冒険", "スノウボールアース", "大賢者リドルの時間逆行", "ダイヤのA actⅡ Second Season", "ただいま、おじゃまされます！", "だんでらいおん", "杖と剣のウィストリア シーズン2", "転生したらスライムだった件 第4期", "Dr.STONE SCIENCE FUTURE 第3クール", "ドロヘドロ Season2", "とんがり帽子のアトリエ", "NEEDY GIRL OVERDOSE", "逃がした魚は大きかったが釣りあげた魚が大きすぎた件", "逃げ上手の若君（再放送）", "日本三國", "ニワトリ・ファイター", "ねずみくんのチョッキ", "灰原くんの強くて青春ニューゲーム", "BEASTARS FINAL SEASON Part2", "悲劇の元凶となる最強外道ラスボス女王は民の為に尽くします。Season２", "左ききのエレン", "姫騎士は蛮族（バルバロイ）の嫁", "百妖譜 傑作選", "僕のヒーローアカデミア More", "ポンコツ風紀委員とスカート丈が不適切なJKの話", "本好きの下剋上 領主の養女", "魔入りました！入間くん 第4シリーズ", "MAO", "また殺されてしまったのですね、探偵様", "魔法の姉妹ルルットリリィ", "魔物喰らいの冒険者～俺だけ魔物を喰らって強くなる～", "茉莉花ちゃんの好感度はぶっ壊れている", "マリッジトキシン", "メイドさんは食べるだけ", "女神「異世界転生何になりたいですか」 俺「勇者の肋骨で」", "ようこそ実力至上主義の教室へ 4th Season", "夜桜さんちの大作戦 第2期", "黄泉のツガイ", "よわよわ先生", "LIAR GAME", "リィンカーネーションの花弁", "Re:ゼロから始める異世界生活 4th season", "リラックマ", "レプリカだって、恋をする。"];
+
+    const $ = (s) => document.querySelector(s);
+
+    const LABELS = {
+      romance:"恋愛", drama:"青春・ドラマ", fantasy:"ファンタジー", action:"アクション",
+      dark:"ダーク", scifi:"SF / 科学", strategy:"頭脳戦", comedy:"コメディ",
+      growth:"成長もの", comfy:"見やすい", sequel:"続編", newbie:"初見向け"
+    };
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function tagBadge(tag) {
+      const cls = ["romance","comfy"].includes(tag) ? "tag romance"
+        : ["dark","strategy"].includes(tag) ? "tag dark"
+        : tag === "sequel" ? "tag sequel"
+        : "tag";
+      return `<span class="${cls}">${escapeHtml(LABELS[tag] || tag)}</span>`;
+    }
+
+    function renderQuestions() {
+      $("#qa").innerHTML = QUESTIONS.map((q, i) => `
+        <div class="q">
+          <div class="qt">Q${i+1}. ${escapeHtml(q.text)}</div>
+          <div class="opts">
+            <label class="pill"><input type="radio" name="${q.id}" value="yes"> Yes</label>
+            <label class="pill"><input type="radio" name="${q.id}" value="no"> No</label>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderFeatured(items) {
+      $("#featuredCount").textContent = items.length;
+      $("#featuredList").innerHTML = items.map(a => `
+        <article class="anime">
+          <div class="t">
+            <h3>${escapeHtml(a.title)}</h3>
+            <div class="meta">${escapeHtml(a.when)}<br>${escapeHtml(a.format)}</div>
+          </div>
+          <p class="desc">${escapeHtml(a.desc)}</p>
+          <div class="tags">${a.tags.map(tagBadge).join("")}</div>
+        </article>
+      `).join("");
+    }
+
+    function inferCategory(title) {
+      if (title.includes("再放送")) return "rerun";
+      const sequelWords = ["第", "Season", "season", "シーズン", "Part", "シリーズ", "2", "3", "4", "5", "Ⅱ", "Ⅲ", "More"];
+      const sequelish = sequelWords.some(w => title.includes(w));
+      return sequelish ? "sequel" : "new";
+    }
+
+    function renderAll(items) {
+      $("#allCount").textContent = `${items.length} / ${ALL_TITLES.length} 件を表示中`;
+      $("#allList").innerHTML = items.map(t => {
+        const cat = inferCategory(t);
+        const lab = cat === "rerun" ? "再放送" : cat === "sequel" ? "続編系" : "新作寄り";
+        return `<div class="chip"><span>${escapeHtml(t)}</span><small>${lab}</small></div>`;
+      }).join("");
+    }
+
+    function applyFeaturedFilters() {
+      const q = $("#featuredSearch").value.trim().toLowerCase();
+      const f = $("#featuredFilter").value;
+      const filtered = FEATURED.filter(a => {
+        const hay = (a.title + " " + a.when + " " + a.format + " " + a.desc + " " + a.tags.join(" ")).toLowerCase();
+        if (q && !hay.includes(q)) return false;
+        if (f !== "all" && !a.tags.includes(f)) return false;
+        return true;
+      });
+      renderFeatured(filtered);
+    }
+
+    function applyAllFilters() {
+      const q = $("#allSearch").value.trim().toLowerCase();
+      const f = $("#allFilter").value;
+      const filtered = ALL_TITLES.filter(t => {
+        if (q && !t.toLowerCase().includes(q)) return false;
+        if (f !== "all" && inferCategory(t) !== f) return false;
+        return true;
+      });
+      renderAll(filtered);
+    }
+
+    function calc() {
+      const scores = Object.create(null);
+      const profile = Object.create(null);
+
+      for (const q of QUESTIONS) {
+        const v = document.querySelector(`input[name="${q.id}"]:checked`)?.value;
+        if (!v) {
+          alert("まだ答えていない質問があるみたいです。10問全部に Yes / No を入れてね。");
+          return;
+        }
+        profile[q.id] = v;
+        const src = v === "yes" ? q.yes : q.no;
+        for (const [tag, weight] of Object.entries(src || {})) {
+          scores[tag] = (scores[tag] || 0) + weight;
+        }
+      }
+
+      const ranked = FEATURED.map(a => {
+        let score = 0;
+        for (const t of a.tags) score += (scores[t] || 0);
+        if (profile.q10 === "no" && a.tags.includes("sequel")) score -= 2.2;
+        if (profile.q10 === "no" && a.tags.includes("newbie")) score += 1.2;
+        if (profile.q5 === "no" && a.tags.includes("dark")) score -= 1.8;
+        if (profile.q9 === "yes" && (a.tags.includes("comfy") || a.tags.includes("comedy"))) score += 1.0;
+        score = score / Math.max(1, Math.pow(a.tags.length, 0.18));
+        return { anime:a, score };
+      }).sort((a,b) => b.score - a.score);
+
+      const top = ranked[0];
+      const second = ranked[1];
+      const third = ranked[2];
+
+      const topPrefs = Object.entries(scores)
+        .sort((a,b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([tag]) => LABELS[tag] || tag);
+
+      $("#result").classList.remove("hidden");
+      $("#pickTitle").textContent = `おすすめ：${top.anime.title}（${top.anime.when} / ${top.anime.format}）`;
+      $("#pickWhy").textContent = `回答傾向だと「${topPrefs.join("・")}」を強めに求めていそうだったので、この作品がいちばん相性良さそう。`;
+      $("#pickDesc").textContent = top.anime.desc;
+      $("#pickFor").innerHTML = top.anime.for.map(x => `<li>${escapeHtml(x)}</li>`).join("");
+      $("#pickCaution").textContent = top.anime.caution;
+      $("#runnerUps").innerHTML = [second, third].map(x => `<li>${escapeHtml(x.anime.title)}（${escapeHtml(x.anime.when)}）</li>`).join("");
+
+      $("#featuredSearch").value = top.anime.title;
+      $("#featuredFilter").value = "all";
+      applyFeaturedFilters();
+      document.querySelector('[aria-label="注目作一覧"]').scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    function resetAll() {
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      $("#result").classList.add("hidden");
+
+      $("#featuredSearch").value = "";
+      $("#featuredFilter").value = "all";
+      $("#allSearch").value = "";
+      $("#allFilter").value = "all";
+
+      renderFeatured(FEATURED);
+      renderAll(ALL_TITLES);
+    }
+
+    function shuffleFeatured() {
+      const arr = [...FEATURED];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      renderFeatured(arr.slice(0,3));
+    }
+
+    renderQuestions();
+    renderFeatured(FEATURED);
+    renderAll(ALL_TITLES);
+
+    $("#featuredSearch").addEventListener("input", applyFeaturedFilters);
+    $("#featuredFilter").addEventListener("change", applyFeaturedFilters);
+    $("#allSearch").addEventListener("input", applyAllFilters);
+    $("#allFilter").addEventListener("change", applyAllFilters);
+    $("#calc").addEventListener("click", calc);
+    $("#reset").addEventListener("click", resetAll);
+    $("#shuffle").addEventListener("click", shuffleFeatured);
+  </script>
+</body>
+</html>
